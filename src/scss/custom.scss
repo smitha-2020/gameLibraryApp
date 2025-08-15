@@ -1,0 +1,21 @@
+.formHook {
+  margin: 200px;
+  input[type="submit"],
+  input,
+  select {
+    position: relative;
+    border: 1px solid gray;
+    font-size: 16px;
+    padding: 10px;
+    &.error {
+      border-left: 10px solid palevioletred; // small red bar
+    }
+  }
+  input[type="submit"] {
+    background-color: palevioletred;
+    border: 0;
+  }
+}
+
+// Import all of Bootstrap’s CSS
+@import "bootstrap/scss/bootstrap";
