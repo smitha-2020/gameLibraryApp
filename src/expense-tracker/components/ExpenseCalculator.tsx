@@ -25,12 +25,16 @@ export default function ExpenseCalculator({
     register,
     handleSubmit,
     formState: { errors, isValid },
+    reset,
   } = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
   });
 
-  const onSubmit = (data: z.infer<typeof schema>) =>
+  const onSubmit = (data: z.infer<typeof schema>) => {
     setExpenses((prev) => [...prev, data]);
+    reset();
+  };
+
   console.log(errors);
 
   return (
