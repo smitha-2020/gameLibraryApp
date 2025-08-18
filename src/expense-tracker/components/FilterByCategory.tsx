@@ -12,7 +12,10 @@ const FilterByCategory = ({
   let unique = categories.filter((item, i, ar) => ar.indexOf(item) === i);
 
   return (
-    <select onChange={(event) => selectCategory(event.target.value)}>
+    <select
+      onChange={(event) => selectCategory(event.target.value)}
+      role="combobox"
+    >
       <option value="">Select Category</option>
       {unique.map((category) => (
         <option value={category} key={category}>
