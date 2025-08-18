@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import z from "zod";
 import DisplayExpenses from "./expense-tracker/components/DisplayExpenses";
-import ExpenseCalculator, { schema } from "./expense-tracker/components/ExpenseCalculator";
+import ExpenseCalculator, {
+  schema,
+} from "./expense-tracker/components/ExpenseCalculator";
 import FilterByCategory from "./expense-tracker/components/FilterByCategory";
 import "./scss/custom.scss";
 
@@ -16,7 +18,7 @@ function App() {
     setExpenses(newExpenses);
   };
 
-  const selectCategory = (category) => {
+  const selectCategory = (category: string) => {
     setCategory(category);
   };
   return (
@@ -31,7 +33,11 @@ function App() {
               selectCategory={selectCategory}
             />
           </div>
-          <DisplayExpenses expenses={expenses} onDeleteRow={onDeleteRow} category={category} />
+          <DisplayExpenses
+            expenses={expenses}
+            onDeleteRow={onDeleteRow}
+            category={category}
+          />
         </>
       )}
     </div>

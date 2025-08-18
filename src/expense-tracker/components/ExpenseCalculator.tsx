@@ -39,7 +39,6 @@ export default function ExpenseCalculator({
       className={"d-flex flex-column gap-2 formHook"}
     >
       <input
-        name="description"
         type="text"
         placeholder="Desciption"
         {...register("description")}
@@ -47,7 +46,6 @@ export default function ExpenseCalculator({
       />
       {errors.description && <span>{errors.description.message}</span>}
       <input
-        name="amount"
         type="amount"
         placeholder="Amount"
         {...register("amount", { valueAsNumber: true })}
