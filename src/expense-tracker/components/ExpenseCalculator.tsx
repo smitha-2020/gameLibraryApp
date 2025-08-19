@@ -40,7 +40,7 @@ export default function ExpenseCalculator({
     >
       <input
         type="text"
-        placeholder="Desciption"
+        placeholder="Description"
         {...register("description")}
         className={errors.description ? "error" : ""}
       />
@@ -54,12 +54,15 @@ export default function ExpenseCalculator({
       {errors.amount && <span>{errors.amount.message}</span>}
 
       <select
+        role="combobox"
         {...register("category", { required: true })}
         className={errors.category ? "error" : ""}
       >
         <option value="select one">select one</option>
         {categories.map((category) => (
-          <option value={category}>{category}</option>
+          <option key={category} value={category}>
+            {category}
+          </option>
         ))}
 
         {/** <option value="grocery">Grocery</option>
