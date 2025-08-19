@@ -1,4 +1,3 @@
-import React from "react";
 import { Table } from "react-bootstrap";
 import z from "zod";
 import { schema } from "./ExpenseCalculator";
@@ -9,16 +8,14 @@ const DisplayExpenses = ({
   category,
 }: {
   expenses: z.infer<typeof schema>[];
-  onDeleteRow: (index) => void;
+  onDeleteRow: (index: number) => void;
   category: string;
 }) => {
-  if (expenses.length === 0) {
-    <p>No Expenses found!!</p>;
-  }
-
   const filteredExpenses =
     category !== ""
-      ? expenses.filter((expense) => expense.category === category)
+      ? expenses.filter(
+          (expense) => expense.category.toLowerCase() === category.toLowerCase()
+        )
       : expenses;
 
   return (
@@ -30,27 +27,34 @@ const DisplayExpenses = ({
       responsive="sm"
       className={"px-2"}
     >
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Description</th>
-          <th>Amount($)</th>
-          <th>Category</th>
-          <th>Total</th>
-          <th></th>
-        </tr>
-      </thead>
+      {filteredExpenses.length > 0 && (
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Description</th>
+            <th>Amount($)</th>
+            <th>Category</th>
+            <th>Total</th>
+            <th></th>
+          </tr>
+        </thead>
+      )}
       <tbody>
         {filteredExpenses.map((expense, index) => {
           return (
-            <tr key={expense.amount + index}>
+            <tr key={index}>
               <td>{index + 1}</td>
               <td>{expense.description}</td>
               <td>{expense.amount}</td>
               <td>{expense.category}</td>
               <td>@mdo</td>
               <td>
-                <button onClick={() => onDeleteRow(index)}>delete</button>
+                <button
+                  onClick={() => onDeleteRow(index)}
+                  data-testid={`delete-btn-${index}`}
+                >
+                  delete
+                </button>
               </td>
             </tr>
           );

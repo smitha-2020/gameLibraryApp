@@ -43,15 +43,13 @@ export default function ExpenseCalculator({
       className={"d-flex flex-column gap-2 formHook"}
     >
       <input
-        name="description"
         type="text"
-        placeholder="Desciption"
+        placeholder="Description"
         {...register("description")}
         className={errors.description ? "error" : ""}
       />
       {errors.description && <span>{errors.description.message}</span>}
       <input
-        name="amount"
         type="amount"
         placeholder="Amount"
         {...register("amount", { valueAsNumber: true })}
@@ -60,12 +58,15 @@ export default function ExpenseCalculator({
       {errors.amount && <span>{errors.amount.message}</span>}
 
       <select
+        role="combobox"
         {...register("category", { required: true })}
         className={errors.category ? "error" : ""}
       >
         <option value="select one">select one</option>
         {categories.map((category) => (
-          <option value={category}>{category}</option>
+          <option key={category} value={category}>
+            {category}
+          </option>
         ))}
 
         {/** <option value="grocery">Grocery</option>
