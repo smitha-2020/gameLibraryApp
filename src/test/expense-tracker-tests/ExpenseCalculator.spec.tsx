@@ -16,15 +16,13 @@ describe("should check if the expense calulator", () => {
     await user.type(inputDescription, "o".repeat(11));
     await user.type(inputAmount, "350");
     await user.click(inputCategory);
+    const options = await screen.findAllByRole("option");
     await user.selectOptions(inputCategory, "hobby");
 
-    const options = await screen.findAllByRole("option");
     expect(options).toHaveLength(6);
 
     await user.click(options[3]);
 
     expect(await screen.findByRole("button")).not.toBeDisabled();
-
-    screen.debug();
   });
 });
