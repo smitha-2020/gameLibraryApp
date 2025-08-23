@@ -77,7 +77,7 @@ export default function ExpenseCalculator({
       </select>
       {errors.category && <span>{errors.category.message}</span>}
 
-      <input type="submit" disabled={!isValid} />
+      <input type="submit" />
     </form>
   );
 }
