@@ -7,6 +7,7 @@ const categories = ["grocery", "tickets", "hobby", "fees", "shopping"];
 export const schema = z.object({
   description: z
     .string()
+    .regex(/^[a-zA-Z]+([\w ]*)$/)
     .min(10, { message: "Description must be atleast 10 charecters long" }),
   amount: z.number().min(1),
   category: z
